@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/backward_seek.png</file>
+        <file>icons/forward_seek.png</file>
+        <file>icons/play.png</file>
+    </qresource>
+</RCC>

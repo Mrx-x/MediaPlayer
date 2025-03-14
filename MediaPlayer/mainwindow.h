@@ -3,6 +3,12 @@
 
 #include <QMainWindow>
 
+#include <QStyle>
+#include <QFileDialog>
+#include <QtMultimedia/QMediaPlayer>
+#include <QtMultimedia/QAudioOutput>
+#include <QtMultimediaWidgets/QVideoWidget>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,7 +21,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public:
+    void resizeEvent(QResizeEvent* event) override;
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
 };
 #endif // MAINWINDOW_H

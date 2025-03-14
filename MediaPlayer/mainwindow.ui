@@ -6,17 +6,237 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1024</width>
+    <height>720</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QStatusBar" name="statusbar"/>
+  <property name="styleSheet">
+   <string notr="true">QWidget#centralwidget
+{
+	background-color:	rgb(43, 43, 43);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="MediaControlPanel" name="mediaControlPanel" native="true">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>591</y>
+      <width>600</width>
+      <height>124</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>600</width>
+      <height>124</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>600</width>
+      <height>124</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">MediaControlPanel
+{
+	background-color:	rgba(49, 48, 84, 0.4);
+	border-width:	2px;
+	border-radius:	10px;
+	border:	2px outset rgb(89, 89, 89);
+}</string>
+    </property>
+    <widget class="QPushButton" name="forwardSeekButton">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>60</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Общий стиль кнопки */
+QPushButton {
+    font-size: 18px;
+    padding: 10px 30px;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgb(89, 89, 89);
+    background-color: transparent;
+    border-radius: 25px;
+	qproperty-icon:	url(:/icons/forward_seek.png);
+	qproperty-iconSize:	32px 32px;
+}
+
+/* Эффект свечения при наведении */
+QPushButton:hover {
+    border-color: rgba(146, 148, 248, 0.8);
+}
+
+/* Эффект нажатия */
+QPushButton:pressed {
+    background-color: rgba(146, 148, 248, 0.2);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="backwardSeekButton">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>60</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Общий стиль кнопки */
+QPushButton {
+    font-size: 18px;
+    padding: 10px 30px;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgb(89, 89, 89);
+    background-color: transparent;
+    border-radius: 25px;
+	qproperty-icon:	url(:/icons/backward_seek.png);
+	qproperty-iconSize:	32px 32px;
+}
+
+/* Эффект свечения при наведении */
+QPushButton:hover {
+    border-color: rgba(146, 148, 248, 0.8);
+}
+
+/* Эффект нажатия */
+QPushButton:pressed {
+    background-color: rgba(146, 148, 248, 0.2);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="playPauseButton">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>55</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Общий стиль кнопки */
+QPushButton {
+    color: #f4f4f4;
+    border: 2px solid rgb(89, 89, 89);
+    background-color: transparent;
+    border-radius: 30px;
+	qproperty-icon:	url(:/icons/play.png);
+	qproperty-iconSize:	32px 32px;
+	padding-left:	5px
+}
+
+/* Эффект свечения при наведении */
+QPushButton:hover {
+    border-color: rgba(146, 148, 248, 0.8);
+}
+
+/* Эффект нажатия */
+QPushButton:pressed {
+    background-color: rgba(146, 148, 248, 0.2);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QSlider" name="timeLineSlider">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>20</y>
+       <width>400</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal 
+{
+	height: 10px;
+	width: 390px;
+	border-radius: 5px;
+    background: rgb(89, 89, 89);
+}
+
+QSlider::handle:horizontal 
+{
+    height: 20px;
+	width: 20px;
+    background: rgb(63, 58, 153);
+	border-radius: 10px;
+    margin: -5px -5px; /* expand outside the groove */
+}
+
+/*QSlider::add-page:horizontal {
+    background: white;
+}*/
+
+QSlider::sub-page:horizontal 
+{
+    background: rgba(146, 148, 248, 0.8);
+	border-radius: 5px;
+}</string>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="tickPosition">
+      <enum>QSlider::TickPosition::NoTicks</enum>
+     </property>
+    </widget>
+   </widget>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MediaControlPanel</class>
+   <extends>QWidget</extends>
+   <header>MediaControlPanel.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
