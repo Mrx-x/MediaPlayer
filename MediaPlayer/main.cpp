@@ -3,13 +3,17 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QStyleFactory>
 
 #include "MediaPlayerService.h"
 #include "MediaController.h"
+#include "Config.h"
 
 int main(int argc, char *argv[])
 {
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
     QApplication a(argc, argv);
+    a.setApplicationName(APP_NAME);
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -25,6 +29,7 @@ int main(int argc, char *argv[])
     MediaController mediaController(&playerService);
 
     MainWindow w(&mediaController);
+    w.setWindowTitle(APP_NAME);
     w.show();
     return a.exec();
 }

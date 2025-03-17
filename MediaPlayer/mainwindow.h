@@ -14,6 +14,8 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MediaController;
+class ContentSwitcher;
+class HomeWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -39,15 +41,23 @@ private slots:
     void setMuted();
     void volumeChanged(int value);
 
+    void on_actionHome_triggered();
+
 private:
     void initUI() const;
+    void initContentSwitcher() const;
     void updateVolumeButtonIcon(const QString& name) const;
     void updateDurationLabels(qint64 duration) const;
 
     QTime millisecondsToTime(qint64 duration) const;
 
 private:
+    void switchContent(const QString& objName) const;
+
+private:
     Ui::MainWindow* ui;
+    HomeWindow* _homeWindow;
+    ContentSwitcher* _contentSwitcher;
     MediaController* _mediaController;
     qint64 _totalDuration;
 };

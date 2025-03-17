@@ -6,9 +6,13 @@
 #include "MediaController.h"
 #include "MediaPlayerService.h"
 #include "VolumeControlWidget.h"
+#include "ContentSwitcher.h"
+#include "homewindow.h"
 
 MainWindow::MainWindow(MediaController* mediaController, QWidget *parent)
     : QMainWindow(parent)
+    , _homeWindow(new HomeWindow())
+    , _contentSwitcher(new ContentSwitcher(parent))
     , _mediaController(mediaController)
     , ui(new Ui::MainWindow)
     , _totalDuration(0)
@@ -26,12 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initUI() const
 {
-    auto boxLayout = new QVBoxLayout();
-
-    boxLayout->setContentsMargins(0, 0, 0, 0);
-    boxLayout->addWidget(_mediaController->getMediaService()->getVideoWidget());
-
-    ui->videoFrameContainer->setLayout(boxLayout);
+    initContentSwitcher();
 
     connect(_mediaController->getMediaService(), &MediaPlayerService::durationChanged, this, &MainWindow::durationChanged);
     connect(_mediaController->getMediaService(), &MediaPlayerService::positionChanged, this, &MainWindow::positionChanged);
@@ -41,6 +40,23 @@ void MainWindow::initUI() const
     connect(ui->volumeButton, &QPushButton::clicked, this, &MainWindow::setMuted);
 
     connect(ui->timeLineSlider, &QAbstractSlider::valueChanged, this, &MainWindow::timeLineSliderValueChanged);
+}
+
+void MainWindow::initContentSwitcher() const
+{
+    _homeWindow->setParent(ui->contentContainer);
+    auto boxLayout = new QVBoxLayout();
+
+    boxLayout->setContentsMargins(0, 0, 0, 0);
+
+    _contentSwitcher->addPlaceHolder(boxLayout);
+
+    _contentSwitcher->add(_homeWindow);
+    _contentSwitcher->add(_mediaController->getMediaService()->getVideoWidget());
+
+    switchContent(_mediaController->getMediaService()->getVideoWidget()->objectName());
+
+    ui->contentContainer->setLayout(boxLayout);
 }
 
 void MainWindow::updateVolumeButtonIcon(const QString &name) const
@@ -68,12 +84,17 @@ QTime MainWindow::millisecondsToTime(qint64 duration) const
     return time;
 }
 
+void MainWindow::switchContent(const QString &objName) const
+{
+    _contentSwitcher->switchContent(objName);
+}
+
 void MainWindow::on_actionOpen_file_triggered()
 {
-    const auto fileName = QFileDialog::getOpenFileName(nullptr, tr("Select file"), "", tr("MP4 files (*.mp4)"));
+    const auto fileName = QFileDialog::getOpenFileName(nullptr, tr("Select file"), "", tr("MP4, MP3 files (*.mp4 *.mp3)"));
     if (!fileName.isEmpty())
     {
-        _mediaController->setMedia(QUrl(fileName));
+        _mediaController->setMedia(QUrl::fromLocalFile(fileName));
         on_playPauseButton_clicked();
     }
 }
@@ -148,5 +169,10 @@ void MainWindow::volumeChanged(int value)
         updateVolumeButtonIcon("lowSound");
     else
         updateVolumeButtonIcon("sound");
+}
+
+void MainWindow::on_actionHome_triggered()
+{
+    switchContent(_homeWindow->objectName());
 }
 

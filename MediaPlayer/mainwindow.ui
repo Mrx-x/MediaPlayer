@@ -31,7 +31,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QFrame" name="videoFrameContainer">
+     <widget class="QFrame" name="contentContainer">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -394,13 +394,33 @@ QSlider::sub-page:horizontal
     <property name="title">
      <string>Menu</string>
     </property>
+    <addaction name="actionHome"/>
     <addaction name="actionOpen_file"/>
    </widget>
    <addaction name="menuOpen"/>
   </widget>
   <action name="actionOpen_file">
+   <property name="icon">
+    <iconset resource="resources/res.qrc">
+     <normaloff>:/icons/uploadFile.png</normaloff>:/icons/uploadFile.png</iconset>
+   </property>
    <property name="text">
     <string>Open file</string>
+   </property>
+   <property name="iconText">
+    <string>Open file</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="icon">
+    <iconset resource="resources/res.qrc">
+     <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
+   </property>
+   <property name="text">
+    <string>Home</string>
    </property>
   </action>
  </widget>
@@ -418,6 +438,8 @@ QSlider::sub-page:horizontal
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

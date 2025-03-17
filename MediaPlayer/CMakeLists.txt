@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
         ${TS_FILES}
 )
 
+configure_file(Config/Config.h.in Config.h)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MediaPlayer
         MANUAL_FINALIZATION
@@ -42,6 +44,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MediaPlayerService/MediaPlayerService.h MediaPlayerService/MediaPlayerService.cpp
         MediaController/MediaController.h MediaController/MediaController.cpp
         UI/VolumeControlWidget.h UI/VolumeControlWidget.cpp
+        Config/Config.h.in
+
+        UI/ContentSwitcher.h UI/ContentSwitcher.cpp
+        homewindow.h homewindow.cpp homewindow.ui
+        UI/PreviewWidget.h UI/PreviewWidget.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MediaPlayer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -68,6 +75,7 @@ endif()
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/UI")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaController")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaPlayerService")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_BINARY_DIR}")
 
 target_link_libraries(MediaPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets

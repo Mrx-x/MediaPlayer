@@ -8,6 +8,8 @@ MediaPlayerService::MediaPlayerService(QObject *parent)
     , _audioOutput(new QAudioOutput)
     , _videoWidget(new QVideoWidget)
 {
+    _videoWidget->setObjectName("QVideoWidget");
+
     _mediaPlayer->setAudioOutput(_audioOutput);
     _mediaPlayer->setVideoOutput(_videoWidget);
 
