@@ -26,53 +26,75 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="MediaControlPanel" name="mediaControlPanel" native="true">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>591</y>
-      <width>600</width>
-      <height>124</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>600</width>
-      <height>124</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>600</width>
-      <height>124</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">MediaControlPanel
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QFrame" name="videoFrameContainer">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignmentFlag::AlignHCenter">
+     <widget class="MediaControlPanel" name="mediaControlPanel" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>600</width>
+        <height>124</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>600</width>
+        <height>124</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">MediaControlPanel
 {
 	background-color:	rgba(49, 48, 84, 0.4);
 	border-width:	2px;
 	border-radius:	10px;
 	border:	2px outset rgb(89, 89, 89);
 }</string>
-    </property>
-    <widget class="QPushButton" name="forwardSeekButton">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>60</y>
-       <width>50</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">/* Общий стиль кнопки */
+      </property>
+      <widget class="QPushButton" name="forwardSeekButton">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>60</y>
+         <width>50</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Общий стиль кнопки */
 QPushButton {
     font-size: 18px;
     padding: 10px 30px;
@@ -95,23 +117,22 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: rgba(146, 148, 248, 0.2);
 }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="backwardSeekButton">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>60</y>
-       <width>50</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">/* Общий стиль кнопки */
-QPushButton {
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="backwardSeekButton">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>60</y>
+         <width>50</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
     font-size: 18px;
     padding: 10px 30px;
     color: #f4f4f4;
@@ -124,72 +145,186 @@ QPushButton {
 	qproperty-iconSize:	32px 32px;
 }
 
-/* Эффект свечения при наведении */
 QPushButton:hover {
     border-color: rgba(146, 148, 248, 0.8);
 }
 
-/* Эффект нажатия */
 QPushButton:pressed {
     background-color: rgba(146, 148, 248, 0.2);
 }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="playPauseButton">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>55</y>
-       <width>60</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">/* Общий стиль кнопки */
-QPushButton {
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="playPauseButton">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>55</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
     color: #f4f4f4;
     border: 2px solid rgb(89, 89, 89);
     background-color: transparent;
     border-radius: 30px;
 	qproperty-icon:	url(:/icons/play.png);
 	qproperty-iconSize:	32px 32px;
-	padding-left:	5px
 }
 
-/* Эффект свечения при наведении */
 QPushButton:hover {
     border-color: rgba(146, 148, 248, 0.8);
 }
 
-/* Эффект нажатия */
 QPushButton:pressed {
     background-color: rgba(146, 148, 248, 0.2);
 }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QSlider" name="timeLineSlider">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>20</y>
-       <width>400</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QSlider::groove:horizontal 
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="VolumeControlWidget" name="volumeControlWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>65</y>
+         <width>144</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <widget class="QPushButton" name="volumeButton">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>40</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    padding: 10px 30px;
+    color: #f4f4f4;
+    border: 2px solid rgb(89, 89, 89);
+    background-color: transparent;
+    border-radius: 20px;
+	qproperty-icon:	url(:/icons/sound.png);
+	qproperty-iconSize:	32px 32px;
+}
+
+QPushButton:hover {
+    border-color: rgba(146, 148, 248, 0.8);
+}
+
+QPushButton:pressed {
+    background-color: rgba(146, 148, 248, 0.2);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QSlider" name="volumeSlider">
+        <property name="geometry">
+         <rect>
+          <x>44</x>
+          <y>15</y>
+          <width>100</width>
+          <height>10</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QSlider::groove:horizontal 
+{
+	height: 8px;
+	width: 90px;
+	border-radius: 4px;
+    background: rgb(89, 89, 89);
+}
+
+QSlider::handle:horizontal 
+{
+    height: 12px;
+	width: 12px;
+    background: rgb(63, 58, 153);
+	border-radius: 6px;
+    margin: -2px -2px;
+}
+
+QSlider::sub-page:horizontal 
+{
+    background: rgba(146, 148, 248, 0.8);
+	border-radius: 4px;
+}</string>
+        </property>
+        <property name="value">
+         <number>30</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TickPosition::NoTicks</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>561</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>14</number>
+        </property>
+        <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+         <widget class="QLabel" name="currentTimeLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>00:00:00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+         <widget class="QSlider" name="timeLineSlider">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSlider::groove:horizontal 
 {
 	height: 10px;
 	width: 390px;
@@ -203,37 +338,83 @@ QSlider::handle:horizontal
 	width: 20px;
     background: rgb(63, 58, 153);
 	border-radius: 10px;
-    margin: -5px -5px; /* expand outside the groove */
+    margin: -5px -5px;
 }
-
-/*QSlider::add-page:horizontal {
-    background: white;
-}*/
 
 QSlider::sub-page:horizontal 
 {
     background: rgba(146, 148, 248, 0.8);
 	border-radius: 5px;
 }</string>
-     </property>
-     <property name="value">
-      <number>0</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="tickPosition">
-      <enum>QSlider::TickPosition::NoTicks</enum>
-     </property>
-    </widget>
-   </widget>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::TickPosition::NoTicks</enum>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+         <widget class="QLabel" name="totalTimeLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>00:00:00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOpen">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionOpen_file"/>
+   </widget>
+   <addaction name="menuOpen"/>
+  </widget>
+  <action name="actionOpen_file">
+   <property name="text">
+    <string>Open file</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
    <class>MediaControlPanel</class>
    <extends>QWidget</extends>
    <header>MediaControlPanel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>VolumeControlWidget</class>
+   <extends>QWidget</extends>
+   <header>VolumeControlWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

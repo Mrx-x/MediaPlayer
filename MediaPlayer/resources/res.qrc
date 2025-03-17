@@ -3,5 +3,9 @@
         <file>icons/backward_seek.png</file>
         <file>icons/forward_seek.png</file>
         <file>icons/play.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/lowSound.png</file>
+        <file>icons/mute.png</file>
+        <file>icons/sound.png</file>
     </qresource>
 </RCC>

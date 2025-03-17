@@ -36,9 +36,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MediaPlayer
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        MediaControlPanel/MediaControlPanel.h
-        MediaControlPanel/MediaControlPanel.cpp
+        UI/MediaControlPanel.h
+        UI/MediaControlPanel.cpp
         resources/res.qrc
+        MediaPlayerService/MediaPlayerService.h MediaPlayerService/MediaPlayerService.cpp
+        MediaController/MediaController.h MediaController/MediaController.cpp
+        UI/VolumeControlWidget.h UI/VolumeControlWidget.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MediaPlayer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -62,7 +65,9 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaControlPanel")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/UI")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaController")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaPlayerService")
 
 target_link_libraries(MediaPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets

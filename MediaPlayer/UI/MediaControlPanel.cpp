@@ -6,7 +6,7 @@
 #include <QMouseEvent>
 
 static constexpr int ANIMATION_INTERVAL = 3000;
-static constexpr int ANIMATION_DURATION = 300;
+static constexpr int ANIMATION_DURATION = 500;
 static constexpr int BOTTOM_OFFSET = 5;
 
 MediaControlPanel::MediaControlPanel(QWidget *parent)
@@ -23,7 +23,9 @@ MediaControlPanel::MediaControlPanel(QWidget *parent)
     _inactivityTimer = new QTimer(this);
     _inactivityTimer->setInterval(ANIMATION_INTERVAL);
     _inactivityTimer->setSingleShot(true);
+
     connect(_inactivityTimer, &QTimer::timeout, this, &MediaControlPanel::hidePanel);
+    connect(_animation, &QAbstractAnimation::finished, this, &MediaControlPanel::updateVisible);
 
     qApp->installEventFilter(this);
 }
@@ -53,11 +55,11 @@ void MediaControlPanel::showPanel()
 {
     if (_isHidden)
     {
+        _isHidden = false;
         _animation->stop();
         _animation->setStartValue(geometry());
         _animation->setEndValue(QRect(x(), parentWidget()->height() - height() - BOTTOM_OFFSET, width(), height()));
         _animation->start();
-        _isHidden = false;
     }
 }
 
@@ -65,10 +67,15 @@ void MediaControlPanel::hidePanel()
 {
     if (!_isHidden)
     {
+        _isHidden = true;
         _animation->stop();
         _animation->setStartValue(geometry());
         _animation->setEndValue(QRect(x(), parentWidget()->height(), width(), height()));
         _animation->start();
-        _isHidden = true;
     }
+}
+
+void MediaControlPanel::updateVisible()
+{
+    setVisible(!_isHidden);
 }

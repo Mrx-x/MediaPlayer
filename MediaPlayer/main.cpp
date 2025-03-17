@@ -4,6 +4,9 @@
 #include <QLocale>
 #include <QTranslator>
 
+#include "MediaPlayerService.h"
+#include "MediaController.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -17,7 +20,11 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    MainWindow w;
+
+    MediaPlayerService playerService;
+    MediaController mediaController(&playerService);
+
+    MainWindow w(&mediaController);
     w.show();
     return a.exec();
 }

@@ -19,7 +19,7 @@ protected:
 private slots:
     void showPanel();
     void hidePanel();
-
+    void updateVisible();
 private:
     QPropertyAnimation *_animation;
     QTimer *_inactivityTimer;

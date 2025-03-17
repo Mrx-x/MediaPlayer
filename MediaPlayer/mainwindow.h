@@ -13,18 +13,42 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class MediaController;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(MediaController* mediaController, QWidget *parent = nullptr);
     ~MainWindow();
 
-public:
-    void resizeEvent(QResizeEvent* event) override;
+private slots:
+    void on_actionOpen_file_triggered();
+    void on_playPauseButton_clicked();
+    void on_backwardSeekButton_clicked();
+    void on_forwardSeekButton_clicked();
+
+    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
+
+    void timeLineSliderValueChanged(int value);
+    void playbackStateChanged(QMediaPlayer::PlaybackState newState);
+
+    void mutedChanged(bool muted);
+    void setMuted();
+    void volumeChanged(int value);
+
+private:
+    void initUI() const;
+    void updateVolumeButtonIcon(const QString& name) const;
+    void updateDurationLabels(qint64 duration) const;
+
+    QTime millisecondsToTime(qint64 duration) const;
 
 private:
     Ui::MainWindow* ui;
+    MediaController* _mediaController;
+    qint64 _totalDuration;
 };
 #endif // MAINWINDOW_H
