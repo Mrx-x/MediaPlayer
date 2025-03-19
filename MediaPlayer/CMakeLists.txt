@@ -45,7 +45,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MediaController/MediaController.h MediaController/MediaController.cpp
         UI/VolumeControlWidget.h UI/VolumeControlWidget.cpp
         Config/Config.h.in
-
         UI/ContentSwitcher.h UI/ContentSwitcher.cpp
         homewindow.h homewindow.cpp homewindow.ui
         UI/PreviewWidget.h UI/PreviewWidget.cpp

@@ -46,6 +46,7 @@ private slots:
 private:
     void initUI() const;
     void initContentSwitcher() const;
+    void initPreviewWidget() const;
     void updateVolumeButtonIcon(const QString& name) const;
     void updateDurationLabels(qint64 duration) const;
 

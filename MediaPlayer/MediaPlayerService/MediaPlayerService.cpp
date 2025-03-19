@@ -16,6 +16,7 @@ MediaPlayerService::MediaPlayerService(QObject *parent)
     connect(_mediaPlayer, &QMediaPlayer::positionChanged, this, &MediaPlayerService::positionChanged);
     connect(_mediaPlayer, &QMediaPlayer::durationChanged, this, &MediaPlayerService::durationChanged);
     connect(_mediaPlayer, &QMediaPlayer::playbackStateChanged, this, &MediaPlayerService::playbackStateChanged);
+    connect(_mediaPlayer, &QMediaPlayer::sourceChanged, this, &MediaPlayerService::sourceChanged);
     connect(_audioOutput, &QAudioOutput::mutedChanged, this, &MediaPlayerService::mutedChanged);
 }
 

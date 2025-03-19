@@ -26,9 +26,11 @@ private:
     void switchContent(QWidget* widget);
 
 signals:
+    void contentSwitched(const QString& objName);
 
 private:
     QMap<QString, QPointer<QWidget>> _container;
+    QMap<QString, QPointer<QWidget>>::Iterator _currentContent;
     QBoxLayout* _layout;
 };
 

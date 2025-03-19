@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "homewindow.h"
 #include "./ui_mainwindow.h"
 
 #include <QResizeEvent>
@@ -7,7 +8,7 @@
 #include "MediaPlayerService.h"
 #include "VolumeControlWidget.h"
 #include "ContentSwitcher.h"
-#include "homewindow.h"
+#include "PreviewWidget.h"
 
 MainWindow::MainWindow(MediaController* mediaController, QWidget *parent)
     : QMainWindow(parent)
@@ -31,6 +32,7 @@ MainWindow::~MainWindow()
 void MainWindow::initUI() const
 {
     initContentSwitcher();
+    initPreviewWidget();
 
     connect(_mediaController->getMediaService(), &MediaPlayerService::durationChanged, this, &MainWindow::durationChanged);
     connect(_mediaController->getMediaService(), &MediaPlayerService::positionChanged, this, &MainWindow::positionChanged);
@@ -57,6 +59,15 @@ void MainWindow::initContentSwitcher() const
     switchContent(_mediaController->getMediaService()->getVideoWidget()->objectName());
 
     ui->contentContainer->setLayout(boxLayout);
+}
+
+void MainWindow::initPreviewWidget() const
+{
+    connect(_mediaController->getMediaService(), &MediaPlayerService::sourceChanged, ui->previewWidget, &PreviewWidget::sourceChanged);
+    connect(_contentSwitcher, &ContentSwitcher::contentSwitched, ui->previewWidget, &PreviewWidget::contentSwitched);
+
+    ui->previewWidget->setVideoWidget(_mediaController->getMediaService()->getVideoWidget());
+    ui->previewWidget->setContentSwitcher(_contentSwitcher);
 }
 
 void MainWindow::updateVolumeButtonIcon(const QString &name) const

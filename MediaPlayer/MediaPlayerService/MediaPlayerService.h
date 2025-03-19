@@ -39,6 +39,7 @@ signals:
     void positionChanged(qint64 position);
     void playbackStateChanged(QMediaPlayer::PlaybackState newState);
     void mutedChanged(bool muted);
+    void sourceChanged(const QUrl &media);
 
 private:
     QMediaPlayer* _mediaPlayer;

@@ -167,7 +167,8 @@ QPushButton:pressed {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton {
+        <string notr="true">QPushButton 
+{
     color: #f4f4f4;
     border: 2px solid rgb(89, 89, 89);
     background-color: transparent;
@@ -176,11 +177,13 @@ QPushButton:pressed {
 	qproperty-iconSize:	32px 32px;
 }
 
-QPushButton:hover {
+QPushButton:hover 
+{
     border-color: rgba(146, 148, 248, 0.8);
 }
 
-QPushButton:pressed {
+QPushButton:pressed 
+{
     background-color: rgba(146, 148, 248, 0.2);
 }</string>
        </property>
@@ -377,6 +380,32 @@ QSlider::sub-page:horizontal
         </item>
        </layout>
       </widget>
+      <widget class="PreviewWidget" name="previewWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>161</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">PreviewWidget
+{
+	border-radius: 10px;
+}
+
+PreviewWidget:hover 
+{
+    background-color: rgba(75, 75, 75, 0.8);
+}
+
+PreviewWidget:pressed 
+{
+    background-color: rgba(55, 55, 55, 0.8);
+}</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -435,6 +464,12 @@ QSlider::sub-page:horizontal
    <class>VolumeControlWidget</class>
    <extends>QWidget</extends>
    <header>VolumeControlWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PreviewWidget</class>
+   <extends>QWidget</extends>
+   <header>PreviewWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
