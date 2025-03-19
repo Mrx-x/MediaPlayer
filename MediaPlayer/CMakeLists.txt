@@ -14,13 +14,15 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS
             LinguistTools
             Multimedia
             MultimediaWidgets
-            Core)
+            Core
+            Sql)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
             Widgets
             LinguistTools
             Multimedia
             MultimediaWidgets
-            Core)
+            Core
+            Sql)
 
 set(TS_FILES MediaPlayer_ru_RU.ts)
 
@@ -48,6 +50,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         UI/ContentSwitcher.h UI/ContentSwitcher.cpp
         homewindow.h homewindow.cpp homewindow.ui
         UI/PreviewWidget.h UI/PreviewWidget.cpp
+        Database/DatabaseManager.h Database/DatabaseManager.cpp
+        Database/RecentFilesRepository.h Database/RecentFilesRepository.cpp
+        Database/RecentFile.h Database/RecentFile.cpp
+        Database/Listener.h Database/Listener.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MediaPlayer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -71,6 +77,10 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(DEBUG_MODE)
+endif()
+
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/UI")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaController")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaPlayerService")
@@ -81,6 +91,7 @@ target_link_libraries(MediaPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Multimedia
     Qt${QT_VERSION_MAJOR}::MultimediaWidgets
     Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Sql
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

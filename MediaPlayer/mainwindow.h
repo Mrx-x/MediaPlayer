@@ -3,11 +3,7 @@
 
 #include <QMainWindow>
 
-#include <QStyle>
-#include <QFileDialog>
 #include <QtMultimedia/QMediaPlayer>
-#include <QtMultimedia/QAudioOutput>
-#include <QtMultimediaWidgets/QVideoWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,11 +13,15 @@ class MediaController;
 class ContentSwitcher;
 class HomeWindow;
 
+namespace RecentFiles { class RecentFilesRepository; class Listener; }
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    using RecentFilesRepositoryPtr = std::shared_ptr<RecentFiles::RecentFilesRepository>;
+
     MainWindow(MediaController* mediaController, QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -57,6 +57,8 @@ private:
 
 private:
     Ui::MainWindow* ui;
+    RecentFilesRepositoryPtr _recentFilesRepository;
+    RecentFiles::Listener* _listenerRecentFiles;
     HomeWindow* _homeWindow;
     ContentSwitcher* _contentSwitcher;
     MediaController* _mediaController;

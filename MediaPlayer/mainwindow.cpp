@@ -3,15 +3,23 @@
 #include "./ui_mainwindow.h"
 
 #include <QResizeEvent>
+#include <QTime>
+#include <QFileDialog>
 
-#include "MediaController.h"
-#include "MediaPlayerService.h"
-#include "VolumeControlWidget.h"
-#include "ContentSwitcher.h"
-#include "PreviewWidget.h"
+#include "MediaController/MediaController.h"
+#include "MediaPlayerService/MediaPlayerService.h"
+
+#include "UI/VolumeControlWidget.h"
+#include "UI/ContentSwitcher.h"
+#include "UI/PreviewWidget.h"
+
+#include "Database/RecentFilesRepository.h"
+#include "Database/Listener.h"
 
 MainWindow::MainWindow(MediaController* mediaController, QWidget *parent)
     : QMainWindow(parent)
+    , _recentFilesRepository(std::make_shared<RecentFiles::RecentFilesRepository>())
+    , _listenerRecentFiles(new RecentFiles::Listener(_recentFilesRepository, this))
     , _homeWindow(new HomeWindow())
     , _contentSwitcher(new ContentSwitcher(parent))
     , _mediaController(mediaController)
@@ -42,6 +50,7 @@ void MainWindow::initUI() const
     connect(ui->volumeButton, &QPushButton::clicked, this, &MainWindow::setMuted);
 
     connect(ui->timeLineSlider, &QAbstractSlider::valueChanged, this, &MainWindow::timeLineSliderValueChanged);
+    connect(_mediaController->getMediaService(), &MediaPlayerService::sourceChanged, _listenerRecentFiles, &RecentFiles::Listener::sourceChanged);
 }
 
 void MainWindow::initContentSwitcher() const
