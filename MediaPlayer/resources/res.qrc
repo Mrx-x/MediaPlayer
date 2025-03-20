@@ -9,5 +9,7 @@
         <file>icons/sound.png</file>
         <file>icons/home.png</file>
         <file>icons/uploadFile.png</file>
+        <file>qss/RecentFileWidget.css</file>
+        <file>icons/recentFile.png</file>
     </qresource>
 </RCC>

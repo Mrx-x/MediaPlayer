@@ -17,7 +17,6 @@ namespace RecentFiles
         if (media.isValid() && !_filesRepository.expired())
         {
             _filesRepository.lock()->addRecentFile(media.toString());
-            _filesRepository.lock()->getRecentFiles();
         }
     }
 }

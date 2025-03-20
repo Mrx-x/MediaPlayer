@@ -1,0 +1,27 @@
+RecentFileWidget
+{
+    background-color: rgba(90,112,201,0.3);
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 2px outset rgb(68,69,201);
+    font-size: 24px;
+}
+
+RecentFileWidget:hover
+{
+    background-color: rgba(90,112,201,0.2);
+    border: 2px outset rgba(68,69,201,0.6);
+}
+
+RecentFileWidget:pressed
+{
+    background-color: rgba(90,112,201,0.3);
+    border: 2px outset rgb(8, 8, 231);
+}
+
+RecentFileWidget QLabel#fileNameLabel
+{
+    background-color: rgba(90,112,201,0.4);
+    border-radius: 8px;
+    margin-left: 5px;
+}

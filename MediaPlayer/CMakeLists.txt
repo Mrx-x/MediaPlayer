@@ -54,6 +54,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Database/RecentFilesRepository.h Database/RecentFilesRepository.cpp
         Database/RecentFile.h Database/RecentFile.cpp
         Database/Listener.h Database/Listener.cpp
+        Utils/Factory.h
+        RecentFilesManager/RecentFilesManager.h RecentFilesManager/RecentFilesManager.cpp
+        UI/RecentFileWidget.h UI/RecentFileWidget.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MediaPlayer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -84,6 +87,9 @@ endif()
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/UI")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaController")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/MediaPlayerService")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/Database")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/Utils")
+target_include_directories(MediaPlayer PRIVATE "${PROJECT_SOURCE_DIR}/RecentFilesManager")
 target_include_directories(MediaPlayer PRIVATE "${PROJECT_BINARY_DIR}")
 
 target_link_libraries(MediaPlayer PRIVATE
