@@ -31,6 +31,9 @@ public:
     void loadRecentFiles();
 
 private:
+    bool fileExists(const QString& path) const;
+
+private:
     Factory _factory;
     RecentFilesRepositoryPtr _filesRepository;
     QPointer<MediaController> _mediaController;
