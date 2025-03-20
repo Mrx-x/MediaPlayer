@@ -11,5 +11,6 @@
         <file>icons/uploadFile.png</file>
         <file>qss/RecentFileWidget.css</file>
         <file>icons/recentFile.png</file>
+        <file>icons/icon.ico</file>
     </qresource>
 </RCC>

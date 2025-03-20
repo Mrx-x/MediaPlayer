@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     MediaController mediaController(&playerService);
 
     MainWindow w(&mediaController);
+    w.setWindowIcon(QIcon(":/icons/icon.ico"));
     w.setWindowTitle(APP_NAME);
     w.show();
     return a.exec();
